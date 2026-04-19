@@ -8,7 +8,7 @@ export default function EditModal({ expense, token, onClose, onUpdated }) {
 
   const updateExpense = async () => {
     await axios.put(
-      `${NEXT_PUBLIC_BACKEND_URL}/api/expense/${expense._id}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/expense/${expense._id}`,
       { title, amount },
       { headers: { Authorization: token } }
     );
