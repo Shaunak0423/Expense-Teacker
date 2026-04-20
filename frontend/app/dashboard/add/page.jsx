@@ -52,7 +52,7 @@ export default function AddExpense() {
   };
 
   return (
-    <div className="flex flex-col gap-3 w-[40%] bg-purple-300 p-5 rounded shadow">
+    <div className="flex flex-col gap-3 w-[40%] h-[50%] bg-purple-300 p-5 rounded shadow">
       <h1 className="text-xl font-bold mb-3">Add Expense</h1>
     <div className="flex flex-col gap-2">
         <label className="text-md text-white font-bold">Enter Expanse Title:</label>

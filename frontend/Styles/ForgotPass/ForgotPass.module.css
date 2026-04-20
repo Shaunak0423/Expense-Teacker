@@ -17,7 +17,7 @@
     border-radius: 8px;
     background: #eac0ff;
     box-shadow: 3px 4px 4px 0px rgba(0, 0, 0, 0.5);
-    height: 400px;
+    height: 500px;
 }
 
 .form_header{
@@ -58,11 +58,11 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    /* padding-top: 30px; */
+    padding-top: 30px;
 }
 
 .login_button{
-    width: 150px;
+    width: 200px;
     padding: 10px;
     background-color: #fff;
     border: 1px solid #fff;
@@ -78,11 +78,4 @@
     background-color: inherit;
     border: 1px solid #650b93;
     color: #fff;
-}
-
-.forgot_pass_link{
-    width: 100%;
-    text-align: center;
-    color: #0000EE;
-    text-decoration: underline;
 }

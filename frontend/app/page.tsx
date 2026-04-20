@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Navbar from '../Components/Navbar'
 import styles from '../Styles/LoginPage/Login.module.css'
 import toast from "react-hot-toast";
+import Link from "next/link";;
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -13,12 +14,16 @@ export default function Login() {
 
   const login = async () => {
     if(email === ""){
-      alert("Enter Your Email")
+      toast('Email is required', {
+        icon : '⚠️'
+      })
       return
     }
 
     if(password === ""){
-      alert("Enter Your Passsword")
+      toast('Enter your Password', {
+        icon : '⚠️'
+      })
       return
     }
 
@@ -54,6 +59,9 @@ export default function Login() {
       <div className={styles.label_input_container}>
       <label className={styles.form_label}>Enter Your Password</label>
       <input type="password" className={styles.form_input} placeholder="Enter Your Password" onChange={e=>setPassword(e.target.value)} />
+      </div>
+      <div className={styles.label_input_container}>
+            <Link href="/forgot-password" className={styles.forgot_pass_link}>Forgot Password?</Link>
       </div>
       <div className={styles.login_form_button}>
       <button onClick={login} className={styles.login_button}>Login</button>

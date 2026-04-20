@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Navbar from '../../Components/Navbar'
 import styles from '../../Styles/Signup/Signup.module.css'
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 export default function Signup() {
   const [name, setName] = useState("");
