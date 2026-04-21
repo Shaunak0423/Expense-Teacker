@@ -16,4 +16,4 @@ mongoose.connect(process.env.MONGO_URL)
 app.use("/api/auth", authRoutes);
 app.use("/api/expense", expenseRoutes);
 
-app.listen(5000, () => console.log("Server running on 5000"));
+app.listen(5000, () => console.log("Server running on 5000")); 
