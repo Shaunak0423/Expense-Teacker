@@ -1,45 +1,57 @@
 "use client";
-import { useState } from "react";
-import axios from "axios";
 
-export default function EditModal({ expense, token, onClose, onUpdated }) {
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { updateExpense } from "../app/dashboard/action"
+
+export default function EditModal({ expense, onClose }) {
   const [title, setTitle] = useState(expense.title);
   const [amount, setAmount] = useState(expense.amount);
+  const [date, setDate] = useState(
+    new Date(expense.date || expense.createdAt).toISOString().split("T")[0]
+  );
 
-  const updateExpense = async () => {
-    await axios.put(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/expense/${expense._id}`,
-      { title, amount },
-      { headers: { Authorization: token } }
-    );
-
-    onUpdated();
-    onClose();
+  const handleSave = async () => {
+    if (title.trim() === "" || amount === "") {
+      return toast.error("Title and amount are required");
+    }
+    try {
+      await updateExpense(expense._id, title, Number(amount), date);
+      toast.success("Expense updated");
+      onClose();
+    } catch {
+      toast.error("Failed to update");
+    }
   };
 
-  return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center">
-      <div className="bg-white p-5 rounded w-80">
-        <h2 className="text-lg font-bold mb-3">Edit Expense</h2>
+  const today = new Date().toISOString().split("T")[0]
 
+  return (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+      <div className="bg-white p-5 rounded shadow w-[90%] max-w-sm flex flex-col gap-3">
+        <h2 className="text-lg font-bold text-black">Edit Expense</h2>
         <input
-          className="border p-2 w-full mb-2"
+          className="border p-2 rounded text-black"
           value={title}
           onChange={e => setTitle(e.target.value)}
         />
-
         <input
-          className="border p-2 w-full mb-2"
+          type="number"
+          className="border p-2 rounded text-black"
           value={amount}
           onChange={e => setAmount(e.target.value)}
         />
-
-        <div className="flex justify-end gap-2">
-          <button onClick={onClose} className="px-3 py-1 border rounded">
-            Cancel
-          </button>
-          <button onClick={updateExpense} className="bg-blue-500 text-white px-3 py-1 rounded">
-            Update
+        <input
+          type="date"
+          className="border p-2 w-full mb-2 rounded bg-white text-black"
+          value={date}
+          max={today}
+          onChange={e => setDate(e.target.value)}
+        />
+        <div className="flex justify-end gap-3">
+          <button onClick={onClose} className="text-gray-600">Cancel</button>
+          <button onClick={handleSave} className="bg-purple-700 text-white px-4 py-1 rounded">
+            Save
           </button>
         </div>
       </div>

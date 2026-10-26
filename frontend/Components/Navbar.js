@@ -21,7 +21,7 @@ function Navbar() {
 
     <div className={styles.log_out_signin_button}>
         <button
-         onClick={() => LoginPage ? router.push('/signup') : router.push('/')}
+         onClick={() => router.push(LoginPage ? "/signup" : "/")}
          className={styles.nav_button}
          >
             {

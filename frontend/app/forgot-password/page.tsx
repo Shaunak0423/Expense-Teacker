@@ -41,10 +41,14 @@ function page() {
             {email,password}
         )
         toast.success(res.data); 
-        } catch (err) {
-            if (err.response && err.response.data) {
-            toast.error(err.response.data); 
-            } else {
+        } catch (err : unknown) {
+            // if (err.response && err.response.data) {
+            // toast.error(err.response.data); 
+            // } 
+            if(axios.isAxiosError(err)){
+                toast.error(err.response?.data || "Invalid Credentials")
+            }
+            else {
             toast.error("Something went wrong");
             }
         }
@@ -66,7 +70,7 @@ function page() {
           </div>
           <div className={styles.label_input_container}>
           <label className={styles.form_label}>Confirm New Password</label>
-          <input type="confPassword" className={styles.form_input} placeholder="Enter Your Password" onChange={e=>setConfPassword(e.target.value)} />
+          <input type="password" className={styles.form_input} placeholder="Confirm Your Password" onChange={e=>setConfPassword(e.target.value)} />
           </div>
           {/* <div className={styles.label_input_container}>
                 <Link href="/forgot-password" className={styles.forgot_pass_link}>Forgot Password</Link>

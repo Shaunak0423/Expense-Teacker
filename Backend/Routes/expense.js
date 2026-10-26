@@ -6,6 +6,7 @@ router.post("/", auth, async (req, res) => {
   const expense = new Expense({
     title: req.body.title,
     amount: req.body.amount,
+    date: req.body.date || Date.now(),
     userId: req.userId
   });
   await expense.save();

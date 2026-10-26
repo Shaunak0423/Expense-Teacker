@@ -35,9 +35,9 @@ export default function Signup() {
     toast.success("User Created Successfully")
     router.push("/");
     }
-    catch(error){
-        if(error.response){
-            toast.error(error.response.data)
+    catch(error: unknown){
+        if(axios.isAxiosError(error)){
+            toast.error(error.response?.data || "Invalid Credentials")
         }
         else{
             toast.error('Server Not Reachable')
