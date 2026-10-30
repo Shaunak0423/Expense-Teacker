@@ -1,6 +1,5 @@
 "use client"
 
-import React from 'react'
 import styles from '../Styles/Navbar.module.css'
 import Image from 'next/image'
 import logo from '../Images/App-Logo.png'
@@ -21,7 +20,7 @@ function Navbar() {
 
     <div className={styles.log_out_signin_button}>
         <button
-         onClick={() => router.push(LoginPage ? "/signup" : "/")}
+         onClick={() => router.push(LoginPage ? "signup" : "/")}
          className={styles.nav_button}
          >
             {

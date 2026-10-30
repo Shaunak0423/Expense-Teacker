@@ -31,7 +31,7 @@ export default function AddExpense() {
   };
 
   return (
-    <div className="flex flex-col gap-3 w-[40%] h-[50%] bg-purple-300 p-5 rounded shadow">
+    <div className="flex flex-col gap-3 w-[40%] h-[60%] bg-purple-300 p-5 rounded shadow">
       <h1 className="text-xl font-bold mb-3">Add Expense</h1>
 
       <div className="flex flex-col gap-2">
@@ -69,7 +69,7 @@ export default function AddExpense() {
       <div className="flex justify-center w-full">
         <button
           onClick={handleAdd}
-          className="bg-purple-700 text-white font-bold w-[30%] py-2 rounded border-purple-300 transition duration-500 hover:bg-white hover:text-purple-300 hover:border-purple-700"
+          className="bg-purple-700 text-white font-bold w-[50%] py-2 rounded border-purple-300 transition duration-500 hover:bg-white hover:text-purple-300 hover:border-purple-700"
         >
           Add Expense
         </button>

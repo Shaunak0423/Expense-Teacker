@@ -30,7 +30,7 @@ export default async function Dashboard() {
   const months = Object.keys(grouped).sort().reverse(); // newest first
 
   return (
-    <div>
+    <div className="w-[70%]">
       <h1 className="text-2xl font-bold mb-4 text-black">All Expenses</h1>
 
       {months.length === 0 && <p className="text-gray-500">No expenses yet.</p>}

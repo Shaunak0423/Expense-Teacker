@@ -5,7 +5,19 @@ import toast from "react-hot-toast";
 import EditModal from "./EditModal";
 import { deleteExpense } from "../app/dashboard/action";
 
-export default function ExpenseItem({ expense }) {
+export type Expense = {
+  _id: string;
+  title: string;
+  amount: number;
+  date?: string;
+  createdAt: string;
+};
+
+type ExpenseItemProps = {
+  expense: Expense;
+};
+
+export default function ExpanseItem({expense}: ExpenseItemProps  ) {
   const [editing, setEditing] = useState(false);
 
   const handleDelete = async () => {
@@ -20,13 +32,20 @@ export default function ExpenseItem({ expense }) {
 
   return (
     <>
-      <div className="bg-white p-3 rounded shadow mb-2 flex justify-between">
-        <span>
-        {expense.title} - ₹{expense.amount}
-        <span className="text-gray-500 text-sm ml-2">
-            {new Date(expense.date || expense.createdAt).toLocaleDateString("en-IN")}
+      <div className="bg-white p-3 rounded shadow mb-2 flex flex-col justify-center">
+        <span className="text-black text-sm ml-2">
+            {new Date(expense.date ?? expense.createdAt).toLocaleDateString("en-IN")}
         </span>
+        <div className="flex justify-center flex-col items-center w-[100%] gap-3">
+            <span className="text-black text-sm ml-2">
+        {expense.title}
+        
         </span>
+        <span className="text-black text-sm ml-2">
+         ₹{expense.amount}
+        </span>
+        </div>
+        
         <div className="space-x-3">
           <button onClick={() => setEditing(true)} className="text-blue-500">Edit</button>
           <button onClick={handleDelete} className="text-red-500">Delete</button>
