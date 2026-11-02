@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 
-export function middleware(request) {
-  const token = request.cookies.get("token")?.value;
+export function proxy(request) {
+  const token = request.cookies.get("session_token")?.value;
 
-  if (!token && request.nextUrl.pathname.startsWith("/dashboard")) {
+  if (!token) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
