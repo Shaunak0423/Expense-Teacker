@@ -9,7 +9,7 @@ export type Expense = {
   _id: string;
   title: string;
   amount: number;
-  date?: string;
+  date: string;
   createdAt: string;
 };
 

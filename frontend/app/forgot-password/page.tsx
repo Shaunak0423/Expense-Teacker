@@ -5,7 +5,7 @@ import styles from '../../Styles/ForgotPass/ForgotPass.module.css'
 import toast from 'react-hot-toast'
 import axios from 'axios'
 
-function page() {
+function ForgotPassword() {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     const [confPassword,setConfPassword] = useState('')
@@ -84,4 +84,4 @@ function page() {
   )
 }
 
-export default page
+export default ForgotPassword
