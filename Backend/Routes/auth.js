@@ -4,10 +4,20 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 router.post("/signup", async (req, res) => {
-  const hashed = await bcrypt.hash(req.body.password, 10);
-  const user = new User({ ...req.body, password: hashed });
-  await user.save();
-  res.json("User registered");
+  const { name, email, password } = req.body;
+
+  if (!name || !email || !password) {
+    return res.status(400).json("Name, email and password are required");
+  }
+
+  try {
+    const hashed = await bcrypt.hash(password, 10);
+    await new User({ name, email, password: hashed }).save();
+    res.json("User registered");
+  } catch (err) {
+    if (err.code === 11000) return res.status(400).json("Email already registered");
+    res.status(500).json("Something went wrong");
+  }
 });
 
 router.post("/login", async (req, res) => {
@@ -17,7 +27,7 @@ router.post("/login", async (req, res) => {
   const valid = await bcrypt.compare(req.body.password, user.password);
   if (!valid) return res.status(400).json("Wrong password");
 
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
   res.json({ token });
 });
 
