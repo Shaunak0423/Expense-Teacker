@@ -1,15 +1,15 @@
-import { NextResponse } from "next/server";
+// import { NextResponse } from "next/server";
 
-export function middleware(request) {
-  const token = request.cookies.get("token")?.value;
+// export function middleware(request) {
+//   const token = request.cookies.get("token")?.value;
 
-  if (!token && request.nextUrl.pathname.startsWith("/dashboard")) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
+//   if (!token && request.nextUrl.pathname.startsWith("/dashboard")) {
+//     return NextResponse.redirect(new URL("/", request.url));
+//   }
 
-  return NextResponse.next();
-}
+//   return NextResponse.next();
+// }
 
-export const config = {
-  matcher: ["/dashboard/:path*"],
-};
+// export const config = {
+//   matcher: ["/dashboard/:path*"],
+// };
