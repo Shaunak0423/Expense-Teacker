@@ -5,7 +5,19 @@ import toast from "react-hot-toast";
 import EditModal from "./EditModal";
 import { deleteExpense } from "../app/dashboard/action";
 
-export default function ExpenseItem({ expense }) {
+export type Expense = {
+  _id: string;
+  title: string;
+  amount: number;
+  date: string;
+  createdAt: string;
+};
+
+type ExpenseItemProps = {
+  expense: Expense;
+};
+
+export default function ExpanseItem({expense}: ExpenseItemProps  ) {
   const [editing, setEditing] = useState(false);
 
   const handleDelete = async () => {

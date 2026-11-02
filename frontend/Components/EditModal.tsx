@@ -3,16 +3,20 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { updateExpense } from "../app/dashboard/action"
+import { Expense } from "./ExpanseItem";
 
-export default function EditModal({ expense, onClose }) {
+type EditModalProps = {
+  expense : Expense;
+  onClose: () => void;
+}
+
+export default function EditModal({ expense, onClose }: EditModalProps) {
   const [title, setTitle] = useState(expense.title);
-  const [amount, setAmount] = useState(expense.amount);
-  const [date, setDate] = useState(
-    new Date(expense.date || expense.createdAt).toISOString().split("T")[0]
-  );
+  const [amount, setAmount] = useState<number>(expense.amount);
+  const [date, setDate] = useState(new Date(expense.date).toISOString().split("T")[0]);
 
   const handleSave = async () => {
-    if (title.trim() === "" || amount === "") {
+    if (title.trim() === "" || amount.toString() === "") {
       return toast.error("Title and amount are required");
     }
     try {
@@ -39,11 +43,11 @@ export default function EditModal({ expense, onClose }) {
           type="number"
           className="border p-2 rounded text-black"
           value={amount}
-          onChange={e => setAmount(e.target.value)}
+          onChange={e => setAmount(Number(e.target.value))}
         />
         <input
           type="date"
-          className="border p-2 w-full mb-2 rounded bg-white text-black"
+          className="border p-2 rounded text-black"
           value={date}
           max={today}
           onChange={e => setDate(e.target.value)}
