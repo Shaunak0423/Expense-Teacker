@@ -29,4 +29,3 @@ app.listen(PORT, () => console.log(`Server running on ${PORT}`));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/expense", expenseRoutes);
-
