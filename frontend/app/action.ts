@@ -9,7 +9,7 @@ export async function LoginAction(formData: FormData){
     const email = formData.get('email')?.toString();
     const password = formData.get('password')?.toString();
 
-    const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/api/auth/login', {
+    const response = await fetch(process.env.BACKEND_URL + '/api/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
@@ -42,7 +42,7 @@ export async function signupAction(formData: FormData) {
   const email = formData.get('email')?.toString();
   const password = formData.get('password')?.toString();
 
-  const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/api/auth/signup', {
+  const response = await fetch(process.env.BACKEND_URL + '/api/auth/signup', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, email, password }),
@@ -52,5 +52,11 @@ export async function signupAction(formData: FormData) {
     redirect('/signup');
   }
   toast.success("User Created Successfully");
+  redirect('/');
+}
+
+export async function logout() {
+
+  (await cookies()).delete('session_token');
   redirect('/');
 }
