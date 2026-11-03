@@ -32,11 +32,11 @@ export default function ExpanseItem({expense}: ExpenseItemProps  ) {
 
   return (
     <>
-      <div className="bg-white p-3 rounded shadow mb-2 flex flex-col justify-center">
+      <div className="bg-white p-3 rounded shadow mb-2 flex flex-col justify-center w-[20%] items-start gap-2 border-r-4">
         <span className="text-black text-sm ml-2">
             {new Date(expense.date ?? expense.createdAt).toLocaleDateString("en-IN")}
         </span>
-        <div className="flex justify-center flex-col items-center w-[100%] gap-3">
+        <div className="flex justify-center flex-col items-start w-[100%] gap-3">
             <span className="text-black text-sm ml-2">
         {expense.title}
         
