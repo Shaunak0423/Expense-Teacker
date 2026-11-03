@@ -4,39 +4,6 @@ import { signupAction } from '../action';
 
 export default function Signup() {
 
-//   const signup = async () => {
-
-//     if(name === ''){
-//         toast.error('Enter Your Name')
-//         return
-//     }
-//     if(email === ''){
-//         toast.error("Enter Your Email")
-//         return
-//     }
-//     if(password === ''){
-//         toast.error("Enter Your Password")
-//         return
-//     }
-
-//     try{
-//         await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/signup`, {
-//         name, email, password
-//         });
-//     toast.success("User Created Successfully")
-//     router.push("/");
-//     }
-//     catch(error: unknown){
-//         if(axios.isAxiosError(error)){
-//             toast.error(error.response?.data || "Invalid Credentials")
-//         }
-//         else{
-//             toast.error('Server Not Reachable')
-//         }
-//     }
-    
-//   };
-
   return (
     <>
     <Navbar/>

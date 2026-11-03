@@ -27,22 +27,23 @@ router.post("/login", async (req, res) => {
   const valid = await bcrypt.compare(req.body.password, user.password);
   if (!valid) return res.status(400).json("Wrong password");
 
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "15s" });
   res.json({ token });
 });
 
-router.put('/forgot-password', async (req,res) => {
-  const user = await User.findOne({email: req.body.email})
+// router.put('/forgot-password', async (req,res) => {
+//   const user = await User.findOne({email: req.body.email})
 
-  if(!user) return res.status(400).json('User not found')
+//   if(!user) return res.status(400).json('User not found')
 
-  const salt = await bcrypt.genSalt(10);
+//   const salt = await bcrypt.genSalt(10);
 
-  const hashedPassword = await bcrypt.hash(req.body.password, salt)
+//   const hashedPassword = await bcrypt.hash(req.body.password, salt)
 
-  user.password = hashedPassword
-  await user.save()
-  res.status(200).json("Password updated successfully");
-})
+//   user.password = hashedPassword
+//   await user.save()
+//   res.status(200).json("Password updated successfully");
+// })
+
 
 module.exports = router;

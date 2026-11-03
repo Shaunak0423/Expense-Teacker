@@ -1,6 +1,7 @@
 'use server';
 import { cookies } from 'next/headers';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/dist/client/components/navigation';
 
 async function getToken() {
   return (await cookies()).get('session_token')?.value ?? '';
@@ -31,7 +32,7 @@ export async function addExpense(formData: FormData) {
 }
 
 export async function deleteExpense(id: string) {
-  await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/expense/${id}`, {
+  await fetch(`${process.env.BACKEND_URL}/api/expense/${id}`, {
     method: 'DELETE',
     headers: { Authorization: await getToken() },
   });
@@ -39,7 +40,7 @@ export async function deleteExpense(id: string) {
 }
 
 export async function updateExpense(id: string, title: string, amount: number, date: string) {
-  await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/expense/${id}`, {
+  await fetch(`${process.env.BACKEND_URL}/api/expense/${id}`, {
     method: 'PUT', // or PATCH, whichever your backend uses
     headers: { 'Content-Type': 'application/json', Authorization: await getToken() },
     body: JSON.stringify({ title, amount, date }),
@@ -48,10 +49,11 @@ export async function updateExpense(id: string, title: string, amount: number, d
 }
 
 export async function getExpenses() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/expense`, {
+  const res = await fetch(`${process.env.BACKEND_URL}/api/expense`, {
     headers: { Authorization: await getToken() },
     cache: "no-store",
   });
+  if (res.status === 401) redirect("/logout");
   if (!res.ok) return [];
   return res.json();
 }

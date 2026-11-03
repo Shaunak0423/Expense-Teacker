@@ -9,49 +9,6 @@ import Link from "next/link";
 import { LoginAction } from './action';
 
 export default function Login() {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const router = useRouter();
-
-  // const login = async () => {
-  //   if(email === ""){
-  //     toast('Email is required', {
-  //       icon : '⚠️'
-  //     })
-  //     return
-  //   }
-
-  //   if(password === ""){
-  //     toast('Enter your Password', {
-  //       icon : '⚠️'
-  //     })
-  //     return
-  //   }
-
-  //   try {
-  //     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/login`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ email, password }),
-  //     });
-
-  //     const data = await res.json();
-
-  //     if (!res.ok) {
-  //       toast.error(data?.message || "Invalid credentials");
-  //       return;
-  //     }
-
-  //     toast.success("Login successful 🎉");
-  //     document.cookie = `token=${data.token}; path=/`;
-  //     router.push("/dashboard");
-  //   } catch (error) {
-  //     const message = error instanceof Error ? error.message : "Server not reachable";
-  //     toast.error(message || "Server not reachable");
-  //   }
-  // };
 
   return (
     <>
@@ -79,9 +36,9 @@ export default function Login() {
       <label className={styles.form_label}>Enter Your Password</label>
       <input type="password" className={styles.form_input} placeholder="Enter Your Password" onChange={e=>setPassword(e.target.value)} />
       </div> */}
-      <div className={styles.label_input_container}>
+      {/* <div className={styles.label_input_container}>
             <Link href="/forgot-password" className={styles.forgot_pass_link}>Forgot Password?</Link>
-      </div>
+      </div> */}
       <div className={styles.login_form_button}>
         <button type="submit" className={styles.login_button}>Log In</button>
         </div>

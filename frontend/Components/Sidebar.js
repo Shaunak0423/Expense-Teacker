@@ -2,8 +2,10 @@
 import Link from "next/link";
 import Image from 'next/image';
 import logo_image from '../Images/App-Logo.png'
+import { logout } from "../app/action";
 
 export default function Sidebar() {
+
   return (
     <div className="flex flex-col gap-30 w-60 bg-[#cfa2e6] items-center text-white min-h-screen p-5">
     <div className="flex flex-col gap-2">
@@ -18,6 +20,11 @@ export default function Sidebar() {
         <Link href="/dashboard/add" className="hover:text-blue-400">
           Add Expense
         </Link>
+        <form action={logout}>
+          <button type="submit" className="hover:text-blue-400 cursor-pointer">
+            Logout
+          </button>
+        </form>
       </nav>
     </div>
   );
