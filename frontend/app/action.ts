@@ -2,6 +2,7 @@
 
 import {redirect} from 'next/navigation';
 import { cookies } from 'next/headers';
+import toast from "react-hot-toast";
 
 export async function LoginAction(formData: FormData){
         
@@ -34,4 +35,22 @@ export async function LoginAction(formData: FormData){
   // Note: Next.js expects redirect() to be called outside try/catch blocks
   redirect('/dashboard'); 
 
+}
+
+export async function signupAction(formData: FormData) {
+  const name = formData.get('name')?.toString();
+  const email = formData.get('email')?.toString();
+  const password = formData.get('password')?.toString();
+
+  const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/api/auth/signup', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, email, password }),
+  });
+
+  if (!response.ok) {
+    redirect('/signup');
+  }
+  toast.success("User Created Successfully");
+  redirect('/');
 }
