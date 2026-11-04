@@ -2,7 +2,6 @@
 
 import {redirect} from 'next/navigation';
 import { cookies } from 'next/headers';
-import toast from "react-hot-toast";
 
 export async function LoginAction(formData: FormData){
         
@@ -51,7 +50,6 @@ export async function signupAction(formData: FormData) {
   if (!response.ok) {
     redirect('/signup');
   }
-  toast.success("User Created Successfully");
   redirect('/');
 }
 

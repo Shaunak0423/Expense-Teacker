@@ -4,8 +4,6 @@
 // import { useRouter } from "next/navigation";
 import Navbar from '../Components/Navbar'
 import styles from '../Styles/LoginPage/Login.module.css'
-import toast from "react-hot-toast";
-import Link from "next/link";
 import { LoginAction } from './action';
 
 export default function Login() {
