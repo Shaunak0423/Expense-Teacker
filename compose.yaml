@@ -1,0 +1,38 @@
+name: expense-tracker
+
+services:
+  mongo:
+    image: mongo:7
+    restart: on-failure
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  api:
+    build: ./Backend
+    restart: on-failure
+    environment:
+      MONGO_URL: mongodb://mongo:27017/expense
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in the .env file next to compose.yaml}
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  web:
+    build: ./frontend
+    restart: on-failure
+    ports:
+      - "3000:3000"
+    environment:
+      BACKEND_URL: http://api:5000
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  mongo-data:
