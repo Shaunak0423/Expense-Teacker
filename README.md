@@ -8,3 +8,5 @@ Next.js frontend (`frontend/`) and Express + MongoDB backend (`Backend/`).
 
 ## Setup
 If pulling this repo reffer to .env.examples to set up your backend_url and all 
+
+![CI](https://github.com/Shaunak0423/Expense-Teacker/actions/workflows/ci.yml/badge.svg)
