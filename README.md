@@ -188,11 +188,17 @@ Each build is tagged `:sha-<commit>` (immutable, use this for deploys and rollba
 - The API is not exposed outside the Compose network, and MongoDB runs without authentication locally only.
   A hosted database must use credentials.
 
+## Mongo Atlas Connection
+
+- Enter the url as provided in .env.example with your user and password 
+- To get the link click connect in MondoDB atlas select Drivrs link will be below jus replace username and password
+- If the connection fails try using DNS provided in .env.example 
+
 ## Roadmap
 
 - [x] Docker and Docker Compose
 - [x] CI with GitHub Actions and image publishing to GHCR
-- [ ] MongoDB Atlas
+- [x] MongoDB Atlas
 - [ ] Deploy the API on Railway
 - [ ] Deploy the frontend on Vercel
 - [ ] Dependabot, `npm audit` in CI, uptime monitoring
